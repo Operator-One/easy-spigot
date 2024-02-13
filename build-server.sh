@@ -112,3 +112,5 @@ chmod +x $HOME/minecraft-server/bedrock-connect.jar
 cd $HOME/minecraft-server
 wget https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh
 chmod +x $HOME/minecraft-server/start-spigot-mc.sh
+wget https://github.com/Operator-One/easy-spigot/raw/main/stop-spigot-mc.sh
+chmod +x $HOME/minecraft-server/stop-spigot-mc.sh
