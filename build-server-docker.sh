@@ -2,6 +2,11 @@
 
 #Non Docker version. Designed to run on standalone/bare-metal Rocky Linux 9 PC/Server/VMs. 
 
+#Install packages (remove for container installation and implement this in your Dockerfile)
+echo "Elevation required for installation of bind-utils (needed for Bedrock Connect), wget, curl, git, java 1.8 & java 17."
+dnf update -y 
+dnf install bind-utils wget java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64 -y
+
 GITHUB_OWNER1="Pugmatt"
 GITHUB_REPO1="BedrockConnect"
 GITHUB_OWNER2="DownThePark"
@@ -19,11 +24,6 @@ API_URL_EX="https://api.github.com/repos/$GITHUB_OWNER3/$GITHUB_REPO3/releases/l
 JAR_URL_BC=$(curl -s $API_URL_BC | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_SH=$(curl -s $API_URL_SH | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_EX=$(curl -s $API_URL_EX | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url' | head -n 1)
-
-#Install packages (remove for container installation and implement this in your Dockerfile)
-echo "Elevation required for installation of bind-utils (needed for Bedrock Connect), wget, curl, git, java 1.8 & java 17."
-dnf update -y 
-dnf install bind-utils wget java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64 -y
 
 #Create Directories
 mkdir $HOME/minecraft-server
