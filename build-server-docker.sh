@@ -5,7 +5,7 @@
 #Install packages (remove for container installation and implement this in your Dockerfile)
 echo "Elevation required for installation of bind-utils (needed for Bedrock Connect), wget, curl, git, java 1.8 & java 17."
 dnf update -y 
-dnf install bind-utils wget java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64 -y
+dnf install bind-utils wget java-1.8.0-openjdk.x86_64 jq java-17-openjdk.x86_64 -y
 
 GITHUB_OWNER1="Pugmatt"
 GITHUB_REPO1="BedrockConnect"
