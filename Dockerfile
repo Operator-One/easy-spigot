@@ -17,17 +17,17 @@ RUN mkdir -p /home/serveruser/minecraft-server/plugins
 WORKDIR /home/serveruser
 
 # Download needed files
-ADD https://github.com/Operator-One/easy-spigot/raw/main/build-server-docker.sh /home/serveruser/build-server-docker.sh
+ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/build-server-docker.sh /home/serveruser/build-server-docker.sh
 
 RUN chmod +x /home/serveruser/build-server-docker.sh
-RUN chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
 RUN /home/serveruser/build-server-docker.sh
 
 # Set the working directory to where the server jar is
 WORKDIR /home/serveruser/minecraft-server
-ADD https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh ./start-spigot-mc.sh
+ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/start-spigot-mc.sh /home/serveruser/minecraft-server/start-spigot-mc.sh
+RUN chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
 
 RUN chown -R serveruser:servergroup /home/serveruser
 USER serveruser
 # Command to run the SpigotMC server and Minecraft Connect executable
-CMD ./start-spigot-mc.sh
+CMD ./home/serveruser/minecraft-server/start-spigot-mc.sh
