@@ -62,7 +62,7 @@ sleep 60
 kill $JAVA_PID
 
 #Modify Spigot to work with BedrockConnect (uses default Bedrock 19132 port) and host on any
-echo "Modifying plugin files for public/LAN hosting also opening ports on firewalld (if installed)"
+echo "Modifying plugin files for public/LAN hosting.
 sed -i '17 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 sed -i '49 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 sed -i '19 s/.*/  port: 19133/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml

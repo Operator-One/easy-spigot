@@ -3,7 +3,6 @@ FROM rockylinux/rockylinux:latest
 
 #Open Ports
 EXPOSE 25565/tcp
-EXPOSE 19132/udp
 EXPOSE 19133/udp
 
 # Install dependencies
