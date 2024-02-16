@@ -94,18 +94,6 @@ sed -i '17 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/G
 sed -i '49 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 sed -i '19 s/.*/  port: 19133/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 
-#Check for backup and copy if folder has contents (place the world folders in the minecraft-backup dir)
-sourceDir="/home/serveruser/minecraft-backup"
-destDir="/home/serveruser/minecraft-server"
-if [ "$(find "$sourceDir" -mindepth 1 -print -quit)" ]; then
-    echo "Directory is not empty, copying contents..."
-    # Copy the contents. Add -r for recursive copy if there are directories.
-    cp -r "$sourceDir"/* "$destDir"
-    echo "Contents copied to $destDir."
-else
-    echo "Directory is empty or does not exist."
-fi
-
 #Pull Start Script
 chmod +x /home/serveruser/minecraft-server/spigot.jar
 chmod +x /home/serveruser/minecraft-server/bedrock-connect.jar
