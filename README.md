@@ -2,7 +2,8 @@
 
 Early stages of development and testing. 
 
-While in current form it is for standalone bare-metal RockyLinux 9 machines, it will evolve into a self deploying docker container. 
+Simply build the image and deploy on Docker. This will auto-update every build to whatever the latest version of
+everything is. I will be making further improvements for persistence using Docker volumes. 
 
 Easy-Spigot setups everything up needed to host a cross-play/bedrock compatible minecraft server. 
 
