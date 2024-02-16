@@ -8,7 +8,7 @@ EXPOSE 19133
 EXPOSE 53
 
 # Install dependencies
-RUN dnf install -y bind-utils wget git java-1.8.0-openjdk.x86_64 jq java-17-openjdk.x86_64
+RUN dnf install -y bind-utils wget jq java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64
 RUN groupadd -r servergroup && useradd -r -g servergroup serveruser
 RUN mkdir -p /home/serveruser/minecraft-server
 RUN mkdir -p /home/serveruser/minecraft-backup
