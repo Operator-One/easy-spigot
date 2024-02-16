@@ -27,14 +27,14 @@ sudo firewall-cmd --zone=public --add-port=19133/udp --permanent
 sudo firewall-cmd --reload
 
 #Create Directories
-mkdir $HOME/minecraft-server
-mkdir $HOME/minecraft-backup
-mkdir -p $HOME/minecraft-server/plugins
+mkdir /home/serveruser/minecraft-server
+mkdir /home/serveruser/minecraft-backup
+mkdir -p /home/serveruser/minecraft-server/plugins
 
 #Pull latest Bedrock Connect and place jar in minecraft folder
 if [[ $JAR_URL_BC == http* ]]; then
   # Use wget or curl to download the .jar file
-  cd $HOME/minecraft-server
+  cd /home/serveruser/minecraft-server
   echo "Downloading $JAR_URL_BC..."
   curl -L $JAR_URL_BC -o bedrock-connect.jar
   echo "Download completed: bedrock-connect.jar"
@@ -43,7 +43,7 @@ else
 fi
 
 #Geyser Spigot download
-cd $HOME/minecraft-server/plugins
+cd /home/serveruser/minecraft-server/plugins
 echo "Downloading Geyser Spigot..."
 curl -L https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -o geyser-spigot.jar
 echo "Download completed: geyser-spigot.jar"
@@ -51,7 +51,7 @@ echo "Download completed: geyser-spigot.jar"
 #Pull latest SetHome Plugin
 if [[ $JAR_URL_SH == http* ]]; then
   # Use wget or curl to download the .jar file
-  cd $HOME/minecraft-server/plugins
+  cd /home/serveruser/minecraft-server/plugins
   echo "Downloading $JAR_URL_SH..."
   curl -L $JAR_URL_SH -o set-home.jar
   echo "Download completed: set-home.jar"
@@ -62,7 +62,7 @@ fi
 #Pull latest Essentials Plugin
 if [[ $JAR_URL_EX == http* ]]; then
   # Use wget or curl to download the .jar file
-  cd $HOME/minecraft-server/plugins
+  cd /home/serveruser/minecraft-server/plugins
   echo "Downloading $JAR_URL_EX..."
   curl -L $JAR_URL_EX -o essentials-x.jar
   echo "Download completed: essentials-x.jar"
@@ -72,17 +72,17 @@ fi
 
 #Pull latest spigot from Jenkins
 echo "Downloading Latest Spigot Server..."
-cd $HOME/minecraft-server
+cd /home/serveruser/minecraft-server
 curl -L https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar -o BuildTools.jar
 echo "Download completed: BuildTools.jar"
 
 #Build spigot
-cd $HOME/minecraft-server
+cd /home/serveruser/minecraft-server
 echo "Building/configuring spigot, this process will take a few minutes to complete"
 java -jar -Xmx2G -Xms2G -XX:+UseZGC BuildTools.jar
-mv spigot-*.jar $HOME/minecraft-server/spigot.jar
+mv spigot-*.jar /home/serveruser/minecraft-server/spigot.jar
 echo "eula=true" > eula.txt 
-java -jar -Xmx2G -Xms2G -XX:+UseZGC $HOME/minecraft-server/spigot.jar &
+java -jar -Xmx2G -Xms2G -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar &
 sleep 5
 JAVA_PID=$(jobs -p | tail -n 1)
 sleep 60
@@ -90,13 +90,13 @@ kill $JAVA_PID
 
 #Modify Spigot to work with BedrockConnect (uses default Bedrock 19132 port) and host on any
 echo "Modifying plugin files for public/LAN hosting also opening ports on firewalld (if installed)"
-sed -i '17 s/.*/  address: 0.0.0.0/' $HOME/minecraft-server/plugins/Geyser-Spigot/config.yml
-sed -i '49 s/.*/  address: 0.0.0.0/' $HOME/minecraft-server/plugins/Geyser-Spigot/config.yml
-sed -i '19 s/.*/  port: 19133/' $HOME/minecraft-server/plugins/Geyser-Spigot/config.yml
+sed -i '17 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
+sed -i '49 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
+sed -i '19 s/.*/  port: 19133/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 
 #Check for backup and copy if folder has contents (place the world folders in the minecraft-backup dir)
-sourceDir="$HOME/minecraft-backup"
-destDir="$HOME/minecraft-server"
+sourceDir="/home/serveruser/minecraft-backup"
+destDir="/home/serveruser/minecraft-server"
 if [ "$(find "$sourceDir" -mindepth 1 -print -quit)" ]; then
     echo "Directory is not empty, copying contents..."
     # Copy the contents. Add -r for recursive copy if there are directories.
@@ -107,10 +107,10 @@ else
 fi
 
 #Pull Start Script
-chmod +x $HOME/minecraft-server/spigot.jar
-chmod +x $HOME/minecraft-server/bedrock-connect.jar
-cd $HOME/minecraft-server
+chmod +x /home/serveruser/minecraft-server/spigot.jar
+chmod +x /home/serveruser/minecraft-server/bedrock-connect.jar
+cd /home/serveruser/minecraft-server
 wget https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh
-chmod +x $HOME/minecraft-server/start-spigot-mc.sh
+chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
 wget https://github.com/Operator-One/easy-spigot/raw/main/stop-spigot-mc.sh
-chmod +x $HOME/minecraft-server/stop-spigot-mc.sh
+chmod +x /home/serveruser/minecraft-server/stop-spigot-mc.sh
