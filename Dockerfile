@@ -3,7 +3,7 @@ FROM rockylinux/rockylinux:latest
 
 #Open Ports
 EXPOSE 25565/tcp
-EXPOSE 19133/udp
+EXPOSE 19132/udp
 
 # Install dependencies
 RUN dnf install -y bind-utils wget git jq java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64

@@ -64,7 +64,6 @@ kill $JAVA_PID
 echo "Modifying plugin files for public/LAN hosting.
 sed -i '17 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 sed -i '49 s/.*/  address: 0.0.0.0/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
-sed -i '19 s/.*/  port: 19133/' /home/serveruser/minecraft-server/plugins/Geyser-Spigot/config.yml
 
 #Pull Start Script
 chmod +x /home/serveruser/minecraft-server/spigot.jar
