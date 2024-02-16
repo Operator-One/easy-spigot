@@ -11,7 +11,6 @@ API_URL_EX="https://api.github.com/repos/$GITHUB_OWNER3/$GITHUB_REPO3/releases/l
 
 # Use curl to fetch the latest release data and jq to parse the JSON for the .jar file's URL
 # Note: Install jq if you haven't (e.g., sudo apt-get install jq)
-JAR_URL_BC=$(curl -s $API_URL_BC | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_SH=$(curl -s $API_URL_SH | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_EX=$(curl -s $API_URL_EX | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url' | head -n 1)
 
