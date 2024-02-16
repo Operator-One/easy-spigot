@@ -24,8 +24,6 @@ RUN /home/serveruser/build-server-docker.sh
 
 # Set the working directory to where the server jar is
 WORKDIR /home/serveruser/minecraft-server
-ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/start-spigot-mc.sh /home/serveruser/minecraft-server/start-spigot-mc.sh
-RUN chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
 
 RUN chown -R serveruser:servergroup /home/serveruser
 USER serveruser
