@@ -18,7 +18,7 @@ WORKDIR /home/serveruser
 ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/build-server-docker.sh /home/serveruser/build-server-docker.sh
 
 RUN chmod +x /home/serveruser/build-server-docker.sh
-RUN /home/serveruser/build-server-docker.sh
+RUN /home/serveruser/build-server-docker.sh > build.log 2>&1
 
 # Set the working directory to where the server jar is
 WORKDIR /home/serveruser/minecraft-server
