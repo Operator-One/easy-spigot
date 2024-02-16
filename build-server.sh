@@ -79,10 +79,10 @@ echo "Download completed: BuildTools.jar"
 #Build spigot
 cd /home/serveruser/minecraft-server
 echo "Building/configuring spigot, this process will take a few minutes to complete"
-java -jar -Xmx2G -Xms2G -XX:+UseZGC BuildTools.jar
+/etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx2G -Xms2G -XX:+UseZGC BuildTools.jar
 mv spigot-*.jar /home/serveruser/minecraft-server/spigot.jar
 echo "eula=true" > eula.txt 
-java -jar -Xmx2G -Xms2G -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar &
+/etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx2G -Xms2G -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar &
 sleep 5
 JAVA_PID=$(jobs -p | tail -n 1)
 sleep 60
