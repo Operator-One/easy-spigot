@@ -21,6 +21,7 @@ ADD https://github.com/Operator-One/easy-spigot/raw/main/build-server-docker.sh 
 ADD https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh /home/serveruser/minecraft-server
 
 RUN chmod +x /home/serveruser/build-server-docker.sh
+RUN chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
 RUN /home/serveruser/build-server-docker.sh
 
 # Set the working directory to where the server jar is

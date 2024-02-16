@@ -18,19 +18,6 @@ JAR_URL_BC=$(curl -s $API_URL_BC | jq -r '.assets[] | select(.name | endswith(".
 JAR_URL_SH=$(curl -s $API_URL_SH | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_EX=$(curl -s $API_URL_EX | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url' | head -n 1)
 
-#Install packages (remove for container installation and implement this in your Dockerfile)
-sudo dnf update -y
-sudo dnf install bind-utils wget curl git java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64 -y
-sudo firewall-cmd --zone=public --add-port=25565/tcp --permanent
-sudo firewall-cmd --zone=public --add-port=19132/udp --permanent
-sudo firewall-cmd --zone=public --add-port=19133/udp --permanent
-sudo firewall-cmd --reload
-
-#Create Directories
-mkdir /home/serveruser/minecraft-server
-mkdir /home/serveruser/minecraft-backup
-mkdir -p /home/serveruser/minecraft-server/plugins
-
 #Pull latest Bedrock Connect and place jar in minecraft folder
 if [[ $JAR_URL_BC == http* ]]; then
   # Use wget or curl to download the .jar file
@@ -98,7 +85,3 @@ sed -i '19 s/.*/  port: 19133/' /home/serveruser/minecraft-server/plugins/Geyser
 chmod +x /home/serveruser/minecraft-server/spigot.jar
 chmod +x /home/serveruser/minecraft-server/bedrock-connect.jar
 cd /home/serveruser/minecraft-server
-wget https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh
-chmod +x /home/serveruser/minecraft-server/start-spigot-mc.sh
-wget https://github.com/Operator-One/easy-spigot/raw/main/stop-spigot-mc.sh
-chmod +x /home/serveruser/minecraft-server/stop-spigot-mc.sh
