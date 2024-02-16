@@ -1,11 +1,6 @@
 #!/bin/sh
 
-#Non Docker version. Designed to run on standalone/bare-metal Rocky Linux 9 PC/Server/VMs. 
-
-#Install packages (remove for container installation and implement this in your Dockerfile)
-echo "Elevation required for installation of bind-utils (needed for Bedrock Connect), wget, curl, git, java 1.8 & java 17."
-dnf update -y 
-dnf install bind-utils wget java-1.8.0-openjdk.x86_64 jq java-17-openjdk.x86_64 -y
+#Docker Version
 
 GITHUB_OWNER1="Pugmatt"
 GITHUB_REPO1="BedrockConnect"
@@ -24,11 +19,6 @@ API_URL_EX="https://api.github.com/repos/$GITHUB_OWNER3/$GITHUB_REPO3/releases/l
 JAR_URL_BC=$(curl -s $API_URL_BC | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_SH=$(curl -s $API_URL_SH | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url')
 JAR_URL_EX=$(curl -s $API_URL_EX | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url' | head -n 1)
-
-#Create Directories
-mkdir $HOME/minecraft-server
-mkdir $HOME/minecraft-backup
-mkdir -p $HOME/minecraft-server/plugins
 
 #Pull latest Bedrock Connect and place jar in minecraft folder
 if [[ $JAR_URL_BC == http* ]]; then
@@ -93,22 +83,11 @@ sed -i '17 s/.*/  address: 0.0.0.0/' $HOME/minecraft-server/plugins/Geyser-Spigo
 sed -i '49 s/.*/  address: 0.0.0.0/' $HOME/minecraft-server/plugins/Geyser-Spigot/config.yml
 sed -i '19 s/.*/  port: 19133/' $HOME/minecraft-server/plugins/Geyser-Spigot/config.yml
 
-#Check for backup and copy if folder has contents (place the world folders in the minecraft-backup dir)
-sourceDir="$HOME/minecraft-backup"
-destDir="$HOME/minecraft-server"
-if [ "$(find "$sourceDir" -mindepth 1 -print -quit)" ]; then
-    echo "Directory is not empty, copying contents..."
-    # Copy the contents. Add -r for recursive copy if there are directories.
-    cp -r "$sourceDir"/* "$destDir"
-    echo "Contents copied to $destDir."
-else
-    echo "Directory is empty or does not exist."
-fi
-
 #Pull Start Script
 chmod +x $HOME/minecraft-server/spigot.jar
 chmod +x $HOME/minecraft-server/bedrock-connect.jar
 cd $HOME/minecraft-server
 wget https://github.com/Operator-One/easy-spigot/raw/main/start-spigot-mc.sh
 chmod +x $HOME/minecraft-server/start-spigot-mc.sh
-nohup $HOME/minecraft-server/start-spigot-mc.sh > $HOME/server.log &
+
+exit 0
