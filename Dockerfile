@@ -26,5 +26,24 @@ WORKDIR /home/serveruser/minecraft-server
 RUN chown -R serveruser:servergroup /home/serveruser
 USER serveruser
 WORKDIR /home/serveruser/minecraft-server
+#Set these files to your own fork for customization. 
+#Base server -------------
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/banned-ips.json /home/serveruser/minecraft-server
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/banned-players.json /home/serveruser/minecraft-server
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/ops.json /home/serveruser/minecraft-server
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/server.properties /home/serveruser/minecraft-server
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/spigot.yml /home/serveruser/minecraft-server
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/whitelist.json /home/serveruser/minecraft-server
+#Plugins -----------------
+#Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/config.yml /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/custom_items.yml /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/items.json /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/kits.yml /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/motd.txt /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/tpr.yml /home/serveruser/minecraft-server/plugins/Essentials
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/Essentials/upgrades-done.yml /home/serveruser/minecraft-server/plugins/Essentials
+#SetHome
+ADD https://github.com/Operator-One/easy-spigot/raw/main/config/plugins/SetHome/config.yml /home/serveruser/minecraft-server/plugins/SetHome
 # Command to run the SpigotMC server and Minecraft Connect executable
-CMD /etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx4G -Xmx2G /home/serveruser/minecraft-server/spigot.jar
+CMD /etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx4G -Xms512M -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar
