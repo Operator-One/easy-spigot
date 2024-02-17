@@ -20,7 +20,7 @@ RUN mkdir -p /home/serveruser/minecraft-server/plugins
 WORKDIR /home/serveruser
 
 # Download needed files
-ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/build-server-docker.sh /home/serveruser/build-server-docker.sh
+ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/alpine/build-server-docker.sh /home/serveruser/build-server-docker.sh
 
 RUN chmod +x /home/serveruser/build-server-docker.sh
 RUN /home/serveruser/build-server-docker.sh
