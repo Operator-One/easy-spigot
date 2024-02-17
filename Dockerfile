@@ -1,5 +1,5 @@
 # Use Rocky Linux as the base image
-FROM alpine/alpine:latest
+FROM alpine
 
 #Open Ports
 EXPOSE 25565/tcp
