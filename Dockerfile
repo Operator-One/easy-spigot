@@ -1,5 +1,5 @@
-# Use Rocky Linux as the base image
-FROM rockylinux/rockylinux:latest
+# Use Alpine Linux as the base image
+FROM alpine
 
 #Open Ports
 EXPOSE 25565/tcp
@@ -11,8 +11,8 @@ EXPOSE 19132/udp
 #ARG REPO_NAME
 
 # Install dependencies
-RUN dnf install -y bind-utils wget git jq java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64
-RUN groupadd -r servergroup && useradd -r -g servergroup serveruser
+RUN apk add curl git jq openjdk17
+RUN addgroup servergroup && adduser -D -G servergroup serveruser
 RUN mkdir -p /home/serveruser/minecraft-server
 RUN mkdir -p /home/serveruser/minecraft-backup
 RUN mkdir -p /home/serveruser/minecraft-server/plugins
@@ -20,7 +20,7 @@ RUN mkdir -p /home/serveruser/minecraft-server/plugins
 WORKDIR /home/serveruser
 
 # Download needed files
-ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/main/build-server-docker.sh /home/serveruser/build-server-docker.sh
+ADD https://raw.githubusercontent.com/Operator-One/easy-spigot/alpine/build-server-docker.sh /home/serveruser/build-server-docker.sh
 
 RUN chmod +x /home/serveruser/build-server-docker.sh
 RUN /home/serveruser/build-server-docker.sh
@@ -51,4 +51,4 @@ WORKDIR /home/serveruser/minecraft-server
 # Command to run the SpigotMC server and Minecraft Connect executable
 RUN chown -R serveruser:servergroup /home/serveruser
 USER serveruser
-CMD /etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx4G -Xms512M -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar
+CMD java -jar -Xmx1G -Xms256M -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar
