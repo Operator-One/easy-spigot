@@ -51,4 +51,4 @@ WORKDIR /home/serveruser/minecraft-server
 # Command to run the SpigotMC server and Minecraft Connect executable
 RUN chown -R serveruser:servergroup /home/serveruser
 USER serveruser
-CMD /etc/alternatives/jre_17_openjdk/bin/java -jar -Xmx4G -Xms512M -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar
+CMD java -jar -Xmx4G -Xms512M -XX:+UseZGC /home/serveruser/minecraft-server/spigot.jar
