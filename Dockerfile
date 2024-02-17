@@ -1,5 +1,5 @@
 # Use Rocky Linux as the base image
-FROM rockylinux/rockylinux:latest
+FROM alpine/alpine:latest
 
 #Open Ports
 EXPOSE 25565/tcp
@@ -11,8 +11,8 @@ EXPOSE 19132/udp
 #ARG REPO_NAME
 
 # Install dependencies
-RUN dnf install -y bind-utils wget git jq java-1.8.0-openjdk.x86_64 java-17-openjdk.x86_64
-RUN groupadd -r servergroup && useradd -r -g servergroup serveruser
+RUN apk add curl git jq openjdk17
+RUN addgroup servergroup && adduser -D -G servergroup serveruser
 RUN mkdir -p /home/serveruser/minecraft-server
 RUN mkdir -p /home/serveruser/minecraft-backup
 RUN mkdir -p /home/serveruser/minecraft-server/plugins
