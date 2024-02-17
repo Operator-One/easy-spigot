@@ -1,4 +1,4 @@
-# Use Rocky Linux as the base image
+# Use Alpine Linux as the base image
 FROM alpine
 
 #Open Ports
