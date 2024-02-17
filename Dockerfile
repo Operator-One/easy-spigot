@@ -28,7 +28,7 @@ RUN /home/serveruser/build-server-docker.sh
 # Set the working directory to where the server jar is
 WORKDIR /home/serveruser/minecraft-server
 #Set these files to your own fork for customization. Uncomment to use 
-#Set a flag in your docker build command to include your http token to be passed off as ARG "--build-arg GITHUB_TOKEN=<YOUR_HTTP_TOKEN> REPO_OWNER=owner-user REPO_NAME=repo_name"
+#Set a flag in your docker build command to include your http token to be passed off as ARG "--build-arg GITHUB_TOKEN=<YOUR_HTTP_TOKEN> --build-arg REPO_OWNER=owner-user --build-arg REPO_NAME=repo_name"
 #RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/banned-ips.json -o banned-ips.json
 #RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/banned-players.json -o banned-players.json
 #RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/ops.json -o ops.json
