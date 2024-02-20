@@ -3,7 +3,6 @@ FROM alpine
 
 #Open Ports
 EXPOSE 25565/tcp
-EXPOSE 19132/udp
 
 # Install dependencies
 RUN apk add curl git jq openjdk17
