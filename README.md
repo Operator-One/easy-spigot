@@ -9,9 +9,9 @@ If hosting publicly, you'll need to forward some ports:
 - For Crossplay DNS: Port 53
 
 For Configuration, you will need to add the following build args to your docker build command:
---build-arg GITHUB_TOKEN=TOKEN
---build-arg REPO_NAME=easy-spigot
---build-arg REPO_OWNER=Operator-One
---build-arg OWNER_EMAIL=cullen.guimond@guinet.us
+- --build-arg GITHUB_TOKEN=TOKEN
+- --build-arg REPO_NAME=easy-spigot
+- --build-arg REPO_OWNER=Operator-One
+- --build-arg OWNER_EMAIL=cullen.guimond@guinet.us
 
 Email is required for the PaperMC build, otherwise, it'll crash.
