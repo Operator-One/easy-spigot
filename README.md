@@ -11,7 +11,7 @@ For Configuration, you will need to add the following build args to your docker 
 - --build-arg GITHUB_TOKEN=Your-Token
 - --build-arg REPO_NAME=Your-Copied-Template-Repo
 - --build-arg REPO_OWNER=Your-Username
-- --build-arg OWNER_EMAIL=Your-GitEmail@example.comd
+- --build-arg OWNER_EMAIL=Your-GitEmail@example.com
 
 Email is required for the PaperMC build, otherwise, it'll crash.
 
