@@ -2,6 +2,7 @@
 
 Automatically builds an optimized PaperMC docker container for you! Modify the dockerfile to your hearts content.
 Would advise using this as a template for a private repo so private information can be passed to the server. 
+Select "Use this Template" and then "Create Repo" to copy this. 
 
 If hosting publicly, you'll need to forward some ports:
 - For Java MC: Port 25565/tcp
