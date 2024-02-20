@@ -27,11 +27,11 @@ RUN echo "eula=true" > eula.txt
 #RUN sh install-paper.sh
 
 #Set these files to your own fork for customization. 
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/banned-ips.json -o banned-ips.json
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/banned-players.json -o banned-players.json
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/ops.json -o ops.json
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/server.properties -o server.properties
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/config/whitelist.json -o whitelist.json
+RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/banned-ips.json -o banned-ips.json
+RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/banned-players.json -o banned-players.json
+RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/ops.json -o ops.json
+RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/server.properties -o server.properties
+RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/whitelist.json -o whitelist.json
 # Command to run the SpigotMC server and Minecraft Connect executable
 #Fix Permissions/Ownership
 RUN chown -R serveruser:servergroup /home/serveruser
