@@ -56,7 +56,7 @@ world-settings:
     item-despawn-rate: 6000
     arrow-despawn-rate: 1200
     trident-despawn-rate: 1200
-    nerf-spawner-mobs: false
+    nerf-spawner-mobs: true
     zombie-aggressive-towards-villager: true
     enable-zombie-pigmen-portal-spawns: true
     wither-spawn-sound-radius: 0
@@ -119,7 +119,6 @@ world-settings:
       animals: 48
       monsters: 48
       misc: 32
-      display: 128
       other: 64
     ticks-per:
       hopper-transfer: 8
