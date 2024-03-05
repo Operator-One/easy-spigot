@@ -44,8 +44,9 @@ RUN sleep 25
 RUN kill $JAVA_PID ; sleep 5
 #Custom config for PaperMC itself
 WORKDIR /home/serveruser/minecraft-server/config
-RUN rm -f /home/serveruser/minecraft-server/config/paper-global.yml && curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/config/paper-global.yml -o paper-global.yml
-RUN rm -f /home/serveruser/minecraft-server/config/paper-world-defaults.yml && curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/config/paper-world-defaults.yml -o paper-world-defaults.yml
+#Running defaults, something with changing tick rate is causing crash. Figuring it out.
+#RUN rm -f /home/serveruser/minecraft-server/config/paper-global.yml && curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/config/paper-global.yml -o paper-global.yml
+#RUN rm -f /home/serveruser/minecraft-server/config/paper-world-defaults.yml && curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/config/paper-world-defaults.yml -o paper-world-defaults.yml
 #Custom config for Bukkit and Spigot
 WORKDIR /home/serveruser/minecraft-server
 RUN rm -f /home/serveruser/minecraft-server/bukkit.yml && curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/bukkit.yml -o bukkit.yml
