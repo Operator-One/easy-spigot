@@ -22,10 +22,6 @@ RUN cd /home/serveruser/minecraft-server/Paper && sh /home/serveruser/minecraft-
 RUN mv /home/serveruser/minecraft-server/Paper/build/libs/paper* /home/serveruser/minecraft-server/paper.jar
 RUN echo "eula=true" > eula.txt 
 
-#Starts PaperMC build
-RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/papermc/install-paper.sh -o install-paper.sh ; sleep 2
-RUN sh install-paper.sh
-
 #Set these files to your own fork for customization. 
 RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/banned-ips.json -o banned-ips.json
 RUN curl -H "Authorization: token ${GITHUB_TOKEN}" -L https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/server-config/banned-players.json -o banned-players.json
